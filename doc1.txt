@@ -1,0 +1,74 @@
+class X {
+    void greet() {
+        System.out.println("Good Morning!");
+    }
+}
+ 
+class Y extends X {
+    void greet() {
+        System.out.println("Good Afternoon!");
+    }
+}
+ 
+class Z extends Y {
+    void greet() {
+        System.out.println("Good Night!");
+    }
+}
+ 
+public class Test {
+    public static void main(String[] args) {
+        X x = new Z();
+        x.greet(); //Line n1
+        ((Y)x).greet(); //Line n2
+        ((Z)x).greet(); //Line n3
+    }
+}
+-------------------------------------------------------------
+class Shape {
+    int side = 0; //Line n1
+ 
+    int getSide() { //Line n2
+        return side;
+    }
+}
+ 
+class Square extends Shape {
+    private int side = 4; //Line n3
+ 
+    protected int getSide() { //Line n4
+        return side;
+    }
+}
+ 
+public class Test {
+    public static void main(String[] args) {
+        Shape s = new Square();
+        System.out.println(s.side + ":" + s.getSide());
+    }
+}
+------------------------------------------------
+public class Test {
+    public static void main(String[] args) {
+        P p = new R(); //Line n1
+        System.out.println(p.compute("Go")); //Line n2
+    }
+}
+ 
+class P {
+    String compute(String str) {
+        return str + str + str;
+    }
+}
+ 
+class Q extends P {
+    String compute(String str) {
+        return super.compute(str.toLowerCase());
+    }
+}
+ 
+class R extends Q {
+    String compute(String str) {
+        return super.compute(str.replace('o', 'O')); //2nd argument is uppercase O
+    }
+}
